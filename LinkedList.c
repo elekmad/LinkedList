@@ -43,6 +43,8 @@ void LinkedList_empty(struct LinkedList *self)
 {
 	if(self->cells != NULL)
 		ListCell_free(self->cells);
+	self->cells = NULL;
+	self->last = NULL;
 	self->count = 0;
 }
 
