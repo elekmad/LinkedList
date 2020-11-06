@@ -45,6 +45,11 @@ void LinkedList_finalize(struct LinkedList *self)
 		ListCell_free(self->cells);
 }
 
+size_t LinkedList_get_count(struct LinkedList *self)
+{
+	return self->count;
+}
+
 void LinkedList_append(struct LinkedList *self, void *value)
 {
 	struct ListCell *cell = ListCell_new(value);

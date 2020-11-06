@@ -23,4 +23,10 @@ struct LinkedList
 	size_t count;
 };
 
+size_t LinkedList_get_count(struct LinkedList *self);
+void LinkedList_init(struct LinkedList *self);
+void LinkedList_finalize(struct LinkedList *self);
+void LinkedList_prepend(struct LinkedList *self, void *value);
+void LinkedList_append(struct LinkedList *self, void *value);
+
 #endif /* LINKEDLIST_H_ */
