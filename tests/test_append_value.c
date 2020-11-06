@@ -21,6 +21,7 @@ int main(int argc, char **argv)
         ret = -1;
         fprintf(stderr, "count does not match : %zu <> %d\n", LinkedList_get_count(&s), 2);
     }
+    fprintf(stderr, "All is right !\n");
     LinkedList_finalize(&s);
     return ret;
 }

@@ -39,10 +39,16 @@ void LinkedList_init(struct LinkedList *self)
 	memset(self, 0, sizeof(struct LinkedList));
 }
 
-void LinkedList_finalize(struct LinkedList *self)
+void LinkedList_empty(struct LinkedList *self)
 {
 	if(self->cells != NULL)
 		ListCell_free(self->cells);
+	self->count = 0;
+}
+
+void LinkedList_finalize(struct LinkedList *self)
+{
+	LinkedList_empty(self);
 }
 
 size_t LinkedList_get_count(struct LinkedList *self)
