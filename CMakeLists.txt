@@ -6,8 +6,8 @@ add_library(LinkedLists STATIC LinkedList.c LinkedList.h)
 include_directories(LinkedLists ${CMAKE_CURRENT_SOURCE_DIR})
 add_definitions(-D_GNU_SOURCE)
 # add unit tests in tests directory (make test to run)
-#set(testLink LinkedLists)
-#include(unittests.cmake)
+set(testLink LinkedLists)
+include(unittests.cmake)
 # add dpoxygen functionality
 #include(doxygen.cmake)
 

@@ -50,18 +50,35 @@ size_t LinkedList_get_count(struct LinkedList *self)
 	return self->count;
 }
 
+void LinkedList_do_to_all(struct LinkedList *self, void (*func)(void*, void*), void *arg)
+{
+	if(func == NULL)
+		return;
+	struct ListCell *cell = self->cells;
+	while(cell != NULL)
+	{
+		func(cell->value, arg);
+		cell = cell->next;
+	}
+}
+
 void LinkedList_append(struct LinkedList *self, void *value)
 {
 	struct ListCell *cell = ListCell_new(value);
-	if(self->last != NULL)
+	if(self->cells != NULL)
 		ListCell_set_next(self->last, cell);
+	else
+		self->cells = cell;
 	self->last = cell;
+	self->count++;
 }
 
 void LinkedList_prepend(struct LinkedList *self, void *value)
 {
 	struct ListCell *cell = ListCell_new(value);
 	ListCell_set_next(cell, self->cells);
+	self->cells = cell;
 	if(self->last == NULL)
 		self->last = cell;
+	self->count++;
 }
