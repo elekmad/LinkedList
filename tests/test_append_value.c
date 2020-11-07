@@ -1,6 +1,7 @@
 #include <LinkedList.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define CHAR_STRING_TEST "foobar"
 
@@ -23,5 +24,8 @@ int main(int argc, char **argv)
     }
     fprintf(stderr, "All is right !\n");
     LinkedList_finalize(&s);
-    return ret;
+    if(ret == 0)
+        exit(EXIT_SUCCESS);
+    else
+        exit(EXIT_FAILURE);
 }

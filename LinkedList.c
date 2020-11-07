@@ -10,6 +10,12 @@
 #include <malloc.h>
 #include <string.h>
 
+struct ListCell
+{
+	void *value;
+	struct ListCell *next;
+};
+
 struct ListCell *ListCell_new(void *value)
 {
 	struct ListCell *self = calloc(sizeof(struct ListCell), 1);
@@ -67,6 +73,32 @@ void LinkedList_do_to_all(struct LinkedList *self, void (*func)(void*, void*), v
 	{
 		func(cell->value, arg);
 		cell = cell->next;
+	}
+}
+
+void LinkedList_remove(struct LinkedList *self, void *value)
+{
+	struct ListCell *cell = self->cells, *prev = NULL;
+	while(cell != NULL)
+	{
+		if(cell->value != value)
+		{
+			prev = cell;
+			cell = cell->next;
+		}
+		else
+			break;
+	}
+	if(cell != NULL && cell->value == value)
+	{
+		if(prev == NULL)//Cell found is first cell;
+			self->cells = cell->next;
+		else
+			prev->next = cell->next;
+		if(self->last == self->cells)
+			self->last = cell->next;
+		ListCell_free(cell);
+		self->count--;
 	}
 }
 

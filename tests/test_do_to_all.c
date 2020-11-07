@@ -1,6 +1,7 @@
 #include <LinkedList.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define CHAR_STRING_TEST "foobar"
 #define CHAR_STRING_TEST2 "foobar2"
@@ -34,5 +35,9 @@ int main(int argc, char **argv)
     LinkedList_do_to_all(&s, (void(*)(void*, void*))func, (void*)CHAR_DATA);
     LinkedList_do_to_all(&s, (void(*)(void*, void*))func2, NULL);
     LinkedList_finalize(&s);
-    return ret;
+    if(ret == 0)
+        exit(EXIT_SUCCESS);
+    else
+        exit(EXIT_FAILURE);
+
 }
