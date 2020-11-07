@@ -27,6 +27,7 @@ void LinkedList_init(struct LinkedList *self);
 void LinkedList_empty(struct LinkedList *self);
 void LinkedList_finalize(struct LinkedList *self);
 void LinkedList_remove(struct LinkedList *self, void *value);
+void LinkedList_remove_with_compare_func(struct LinkedList *self, int (*func)(void*, void*), void *value);
 void LinkedList_prepend(struct LinkedList *self, void *value);
 void LinkedList_append(struct LinkedList *self, void *value);
 void LinkedList_do_to_all(struct LinkedList *self, void (*func)(void*, void*), void *arg);
