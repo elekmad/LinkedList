@@ -78,10 +78,10 @@ void LinkedList_do_to_all(struct LinkedList *self, void (*func)(void*, void*), v
 
 void *LinkedList_remove_with_compare_func(struct LinkedList *self, int (*func)(void*, void*), void *value)
 {
-	void *return_value;
+	void *return_value = NULL;
 	int ret_compare = -1;
 	if(func == NULL || value == NULL)
-		return;
+		return return_value;
 	struct ListCell *cell = self->cells, *prev = NULL;
 	while(cell != NULL)
 	{
