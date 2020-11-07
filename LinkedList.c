@@ -76,8 +76,9 @@ void LinkedList_do_to_all(struct LinkedList *self, void (*func)(void*, void*), v
 	}
 }
 
-void LinkedList_remove_with_compare_func(struct LinkedList *self, int (*func)(void*, void*), void *value)
+void *LinkedList_remove_with_compare_func(struct LinkedList *self, int (*func)(void*, void*), void *value)
 {
+	void *return_value;
 	int ret_compare = -1;
 	if(func == NULL || value == NULL)
 		return;
@@ -94,6 +95,7 @@ void LinkedList_remove_with_compare_func(struct LinkedList *self, int (*func)(vo
 	}
 	if(cell != NULL && ret_compare == 0)
 	{
+		return_value = cell->value;
 		if(prev == NULL)//Cell found is first cell;
 			self->cells = cell->next;
 		else
@@ -103,6 +105,7 @@ void LinkedList_remove_with_compare_func(struct LinkedList *self, int (*func)(vo
 		ListCell_free(cell);
 		self->count--;
 	}
+	return return_value;
 }
 
 void LinkedList_remove(struct LinkedList *self, void *value)
